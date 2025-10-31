@@ -33,7 +33,7 @@ rna <- read.csv("data/rnaseq.csv")
 ```
 
 The [Data Visualization Cheat
-Sheet](https://github.com/rstudio/cheatsheets/blob/main/data-visualization-2.1.pdf)
+Sheet](https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-visualization.pdf)
 will cover the basics and more advanced features of `ggplot2` and will
 help, in addition to serve as a reminder, getting an overview of the
 many data representations available in the package. The following
@@ -235,14 +235,17 @@ We will now draw a scatter plot with two continuous variables and the `geom_poin
 This graph will represent the log2 fold changes of expression comparing time 8 versus time 0 and time 4 versus time 0. To this end, we first need to compute the means of the log-transformed expression values by gene and time then the log fold changes by subtracting the mean log expressions between time 8 and time 0 and between time 4 and time 0. Note that we also include here the gene biotype that we will use later on to represent the genes. We will save the fold changes in a new data frame called `rna_fc.`
 
 ```{r rna_fc, cache=FALSE}
-rna_fc <- rna %>% select(gene, time,
-                         gene_biotype, expression_log) %>%
+rna <- rna %>% 
+mutate(expression_log = log2(expression + 1))
+
+rna_fc <- rna %>% 
+  select(gene, time,
+         gene_biotype, expression_log) %>%
   group_by(gene, time, gene_biotype) %>%
   summarize(mean_exp = mean(expression_log)) %>%
   pivot_wider(names_from = time,
               values_from = mean_exp) %>%
   mutate(time_8_vs_0 = `8` - `0`, time_4_vs_0 = `4` - `0`)
-
 ```
 
 We can then build a ggplot with the newly created dataset `rna_fc`. Building plots with **`ggplot2`** is typically an iterative process. We start by
@@ -352,8 +355,8 @@ ggplot(data = rna_fc, mapping = aes(x = time_4_vs_0, y = time_8_vs_0)) +
 `r msmbstyle::question_begin()`
 
 Use what you just learned to create a scatter plot of `expression_log`
-over `sample` from the `rna` dataset with the time showing in
-different colors. Is this a good way to show this type of data?
+over `sample` from the `rna` dataset with the mouse id showing in
+different colors. Is this a good way to represent this type of data?
 
 `r msmbstyle::question_end()`
 
@@ -361,8 +364,8 @@ different colors. Is this a good way to show this type of data?
 `r msmbstyle::solution_begin()`
 
 ```{r, eval = TRUE}
-ggplot(data = rna, mapping = aes(y = expression_log, x = sample)) +
-    geom_point(aes(color = time))
+ggplot(rna , aes(x = sample, y = expression_log)) +
+       geom_point(aes(color = mouse))
 ```
 
 `r msmbstyle::solution_end()`
@@ -481,13 +484,13 @@ ggplot(data = rna,
 
 ## Line plots
 
-Let’s calculate the mean expression per duration of the infection for the 10 genes having the highest log fold changes comparing time 8 versus time 0.
-First, we need to select the genes and create a subset of `rna` called `sub_rna` containing the 10 selected genes, then we need to group the data and calculate the mean gene expression within each group:
+Let’s calculate the mean expression per duration of the infection for the 6 genes having the highest log fold changes comparing time 8 versus time 0.
+First, we need to select the genes and create a subset of `rna` called `sub_rna` containing the 6 selected genes, then we need to group the data and calculate the mean gene expression within each group:
 
 ```{r}
 rna_fc <- rna_fc %>% arrange(desc(time_8_vs_0))
 
-genes_selected <- rna_fc$gene[1:10]
+genes_selected <- rna_fc$gene[1:6]
 
 sub_rna <- rna %>%
     filter(gene %in% genes_selected)
@@ -576,6 +579,35 @@ ggplot(data = mean_exp_by_time_sex,
   theme_bw() +
   theme(panel.grid = element_blank())
 ```
+
+`r msmbstyle::question_begin()`
+
+Use the `geom_col()` to try to reproduce the following figure starting from `rna` table.
+
+```{r, echo = FALSE, expression_by_sample_facet-by-gene}
+rna %>% 
+  filter(gene %in% genes_selected) %>% 
+  ggplot(aes(x = sample,  y = expression)) +
+  geom_col(aes(fill = factor(time))) +
+  facet_wrap(~ gene, scales = "free_y") +
+  theme(axis.text.x = element_text(angle = 90, size = 5))
+```
+
+`r msmbstyle::question_end()`
+
+`r msmbstyle::solution_begin()`
+
+```{r expression_by_sample_facet_solution}
+rna %>% 
+  filter(gene %in% genes_selected) %>% 
+  ggplot(aes(x = sample,  y = expression)) +
+  geom_col(aes(fill = factor(time))) +
+  facet_wrap(~ gene, scales = "free_y") +
+  theme(axis.text.x = element_text(angle = 90, size = 5))
+```
+
+`r msmbstyle::solution_end()`
+
 
 
 `r msmbstyle::question_begin()`
