@@ -4,7 +4,7 @@ author: "Laurent Gatto, Manon Martin & Axelle Loriot"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 knit: bookdown::preview_chapter
-description: "Course material for the Data manipulation and visualisation with R training (SMCS & CBIO, UCLouvain)."
+description: "Course material for the Data manipulation and visualisation with R training (SMCS & BIOINFO, UCLouvain)."
 output:
   msmbstyle::msmb_html_book:
     toc: TRUE
@@ -25,15 +25,27 @@ bibliography: [refs.bib, packages.bib]
 
 ## Training aims {-}
 
-*Do you want to get started with reproducible data analysis with R, one of the most used software for the analysis of high throughput biology data?*
+*Do you want to get started with reproducible data analysis with R,
+one of the most used software for the analysis of high throughput
+biology data?*
 
-R is a free and open-source software. It is one of the most widely used in the bio-medical research field, likely due to the availability of numerous R/Bioconductor packages specifically dedicated to high throughput data.
+R is a free and open-source software. It is one of the most widely
+used in the bio-medical research field, likely due to the availability
+of numerous R/Bioconductor packages specifically dedicated to high
+throughput data.
 
-The goal of this training is to initiate wet-lab scientists to reproducible data analysis with R and its RStudio integrated environment, focusing on data manipulation, data visualisation and basic data analysis.
+The goal of this training is to initiate wet-lab scientists to
+reproducible data analysis with R and its RStudio integrated
+environment, focusing on data manipulation, data visualisation and
+basic data analysis.
 
 ## Pre-requisites {-}
 
-This training doesn’t require any previous knowledge of R. There are no programming or technical pre-requisities for this course, other than basic computer usage, such as general knowledge about files (binary and text files) and folders and as well as downloading files. Familiarity with a spreadsheet editor is helpful for the first
+This training doesn't require any previous knowledge of R. There are
+no programming or technical pre-requisities for this course, other
+than basic computer usage, such as general knowledge about files
+(binary and text files) and folders and as well as downloading
+files. Familiarity with a spreadsheet editor is helpful for the first
 chapter.
 
 ## Content {-}
@@ -45,11 +57,24 @@ chapter.
 
 ## Requirements {-}
 
-Participants must bring a laptop with a Mac, Linux, or Windows operating system (not a tablet, Chromebook, etc.) that they have administrative privileges on. They should have a few specific software packages installed:
+Participants must bring a laptop with a Mac, Linux, or Windows
+operating system (not a tablet, Chromebook, etc.) that they have
+administrative privileges on. They should have a few specific software
+packages installed:
 
-* Download R from the CRAN page: https://cloud.r-project.org/. At the top of that page, choose the Download R link corresponding to your operating system. If you use Windows, follow install R for the first time, then click the link to download R. The installation procedure is like any other software, and you can safely use all default options. If you use Mac (OS X), download the pkg installer that matches you OS version and install like any other software. Linux users are advised to use their package manager.
+* Download R from the CRAN page: https://cloud.r-project.org/. At the
+  top of that page, choose the Download R link corresponding to your
+  operating system. If you use Windows, follow install R for the first
+  time, then click the link to download R. The installation procedure
+  is like any other software, and you can safely use all default
+  options. If you use Mac (OS X), download the pkg installer that
+  matches you OS version and install like any other software. Linux
+  users are advised to use their package manager.
 
-* Download and install the Rstudio Desktop Open source edition: https://rstudio.com/products/rstudio/download/#download. Choose the installer for your operating system and version. Install as any other software.
+* Download and install the Rstudio Desktop Open source edition:
+  https://rstudio.com/products/rstudio/download/#download. Choose the
+  installer for your operating system and version. Install as any
+  other software.
 
 For technical assistance https://moodle.uclouvain.be/course/view.php?id=4862
 
@@ -80,21 +105,18 @@ Sheets](https://www.rstudio.com/resources/cheatsheets/) are also a
 handy resource and readers will be pointed to specific sheets in the
 respective chapters.
 
-This training is organised by the SMCS in partnership with laurent
-Gatto, from the [CBIO Lab](https://lgatto.github.io/cbio-lab/) in the
-de Duve Institute and is being taught by Axelle Loriot and Manon
-Martin at the UCLouvain, Belgium.
+This training is organised by the SMCS in partnership with Laurent
+Gatto, from the [CBIO Lab](https://lgatto.github.io/cbio-lab/) at the
+de Duve Institute and is being taught by Axelle Loriot and Laurent
+Gatt at the UCLouvain, Belgium.
 
 
 ## About this course material {-}
 
 This material is written in R markdown [@R-rmarkdown] and compiled as
-a book using `knitr` [@R-knitr] `bookdown` [@R-bookdown]. The source
-code is publicly available in a Github repository
-[https://github.com/UCLouvain-CBIO/bioinfo-training-01-intro-r](https://github.com/UCLouvain-CBIO/bioinfo-training-01-intro-r)
-and the compiled material can be read at
+a book using `knitr` [@R-knitr] `bookdown` [@R-bookdown]. The redered
+material can be read on-line at
 https://uclouvain-cbio.github.io/bioinfo-training-01-intro-r
-
 
 
 ## License {-}
