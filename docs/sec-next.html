@@ -328,7 +328,7 @@ it would be automatically removed from the sample metadata in the same operation
 ## dim: 1474 22 
 ## metadata(0):
 ## assays(1): ''
-## rownames(1474): Asl Apod ... Pbx1 Rgs4
+## rownames(1474): Asl Apod ... Lmx1a Pbx1
 ## rowData names(9): gene ENTREZID ... phenotype_description
 ##   hsapiens_homolog_associated_gene_name
 ## colnames(22): GSM2545336 GSM2545337 ... GSM2545363 GSM2545380
@@ -395,10 +395,10 @@ the <code>assay</code> function:</p>
 ##                gene  ENTREZID                product    ensembl_gene_id
 ##         &lt;character&gt; &lt;numeric&gt;            &lt;character&gt;        &lt;character&gt;
 ## Asl             Asl    109900 argininosuccinate ly.. ENSMUSG00000025533
-## Apod           Apod     11815 apolipoprotein D tra.. ENSMUSG00000022548
-## Cyp2d22     Cyp2d22     56448 cytochrome P450 fami.. ENSMUSG00000061740
+## Apod           Apod     11815 apolipoprotein D, tr.. ENSMUSG00000022548
+## Cyp2d22     Cyp2d22     56448 cytochrome P450, fam.. ENSMUSG00000061740
 ## Klk6           Klk6     19144 kallikrein related-p.. ENSMUSG00000050063
-## Fcrls         Fcrls     80891 Fc receptor-like S s.. ENSMUSG00000015852
+## Fcrls         Fcrls     80891 Fc receptor-like S, .. ENSMUSG00000015852
 ## Slc2a4       Slc2a4     20528 solute carrier famil.. ENSMUSG00000018566
 ##         external_synonym chromosome_name   gene_biotype  phenotype_description
 ##              &lt;character&gt;     &lt;character&gt;    &lt;character&gt;            &lt;character&gt;
@@ -414,7 +414,7 @@ the <code>assay</code> function:</p>
 ## Apod                                     APOD
 ## Cyp2d22                                CYP2D6
 ## Klk6                                     KLK6
-## Fcrls                                   FCRL4
+## Fcrls                                   FCRL2
 ## Slc2a4                                 SLC2A4</code></pre>
 <div class="sourceCode" id="cb576"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb576-1"><a href="sec-next.html#cb576-1" tabindex="-1"></a><span class="fu">dim</span>(<span class="fu">rowData</span>(se))</span></code></pre></div>
 <pre><code>## [1] 1474    9</code></pre>
@@ -455,10 +455,10 @@ the 5 first features for the 3 first samples.</p>
 ##                gene  ENTREZID                product    ensembl_gene_id
 ##         &lt;character&gt; &lt;numeric&gt;            &lt;character&gt;        &lt;character&gt;
 ## Asl             Asl    109900 argininosuccinate ly.. ENSMUSG00000025533
-## Apod           Apod     11815 apolipoprotein D tra.. ENSMUSG00000022548
-## Cyp2d22     Cyp2d22     56448 cytochrome P450 fami.. ENSMUSG00000061740
+## Apod           Apod     11815 apolipoprotein D, tr.. ENSMUSG00000022548
+## Cyp2d22     Cyp2d22     56448 cytochrome P450, fam.. ENSMUSG00000061740
 ## Klk6           Klk6     19144 kallikrein related-p.. ENSMUSG00000050063
-## Fcrls         Fcrls     80891 Fc receptor-like S s.. ENSMUSG00000015852
+## Fcrls         Fcrls     80891 Fc receptor-like S, .. ENSMUSG00000015852
 ##         external_synonym chromosome_name   gene_biotype  phenotype_description
 ##              &lt;character&gt;     &lt;character&gt;    &lt;character&gt;            &lt;character&gt;
 ## Asl        2510006M18Rik               5 protein_coding abnormal circulating..
@@ -472,7 +472,7 @@ the 5 first features for the 3 first samples.</p>
 ## Apod                                     APOD
 ## Cyp2d22                                CYP2D6
 ## Klk6                                     KLK6
-## Fcrls                                   FCRL4</code></pre>
+## Fcrls                                   FCRL2</code></pre>
 <p>We can also use the <code>colData()</code> function to subset on something from the sample metadata, or the <code>rowData()</code> to subset on something from the feature metadata.
 For example, here we keep only miRNAs and the non infected samples:</p>
 <div class="sourceCode" id="cb584"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb584-1"><a href="sec-next.html#cb584-1" tabindex="-1"></a>se1 <span class="ot">&lt;-</span> se[<span class="fu">rowData</span>(se)<span class="sc">$</span>gene_biotype <span class="sc">==</span> <span class="st">"miRNA"</span>, </span>

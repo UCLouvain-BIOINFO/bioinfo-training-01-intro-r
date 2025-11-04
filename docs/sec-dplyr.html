@@ -400,7 +400,7 @@ a new table containing just the 2 columns <code>gene</code> and
 ##  2 Apod    APOD                                 
 ##  3 Cyp2d22 CYP2D6                               
 ##  4 Klk6    KLK6                                 
-##  5 Fcrls   FCRL4                                
+##  5 Fcrls   FCRL2                                
 ##  6 Slc2a4  SLC2A4                               
 ##  7 Exd2    EXD2                                 
 ##  8 Gjc2    GJC2                                 
@@ -411,38 +411,38 @@ a new table containing just the 2 columns <code>gene</code> and
 <code>filter()</code> and the <code>is.na()</code> function, that determines whether
 something is an NA.</p>
 <div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="sec-dplyr.html#cb289-1" tabindex="-1"></a><span class="fu">filter</span>(genes, <span class="fu">is.na</span>(hsapiens_homolog_associated_gene_name))</span></code></pre></div>
-<pre><code>## # A tibble: 4,774 × 2
+<pre><code>## # A tibble: 4,290 × 2
 ##    gene     hsapiens_homolog_associated_gene_name
 ##    &lt;chr&gt;    &lt;chr&gt;                                
 ##  1 Prodh    &lt;NA&gt;                                 
-##  2 Icosl    &lt;NA&gt;                                 
-##  3 Tssk5    &lt;NA&gt;                                 
-##  4 Vmn2r1   &lt;NA&gt;                                 
-##  5 Gm10654  &lt;NA&gt;                                 
-##  6 Hexa     &lt;NA&gt;                                 
-##  7 Sult1a1  &lt;NA&gt;                                 
-##  8 Gm6277   &lt;NA&gt;                                 
-##  9 Amt      &lt;NA&gt;                                 
-## 10 Tmem198b &lt;NA&gt;                                 
-## # ℹ 4,764 more rows</code></pre>
+##  2 Tssk5    &lt;NA&gt;                                 
+##  3 Vmn2r1   &lt;NA&gt;                                 
+##  4 Gm10654  &lt;NA&gt;                                 
+##  5 Hexa     &lt;NA&gt;                                 
+##  6 Sult1a1  &lt;NA&gt;                                 
+##  7 Gm6277   &lt;NA&gt;                                 
+##  8 Tmem198b &lt;NA&gt;                                 
+##  9 Adam1a   &lt;NA&gt;                                 
+## 10 Ebp      &lt;NA&gt;                                 
+## # ℹ 4,280 more rows</code></pre>
 <p>If we want to keep only mouse gene that have a human homolog, we can insert a “!”
 symbol that negates the result, so we’re asking for every row where
 hsapiens_homolog_associated_gene_name <em>is not</em> an <code>NA</code>.</p>
 <div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="sec-dplyr.html#cb291-1" tabindex="-1"></a><span class="fu">filter</span>(genes, <span class="sc">!</span><span class="fu">is.na</span>(hsapiens_homolog_associated_gene_name))</span></code></pre></div>
-<pre><code>## # A tibble: 27,654 × 2
+<pre><code>## # A tibble: 28,138 × 2
 ##    gene    hsapiens_homolog_associated_gene_name
 ##    &lt;chr&gt;   &lt;chr&gt;                                
 ##  1 Asl     ASL                                  
 ##  2 Apod    APOD                                 
 ##  3 Cyp2d22 CYP2D6                               
 ##  4 Klk6    KLK6                                 
-##  5 Fcrls   FCRL4                                
+##  5 Fcrls   FCRL2                                
 ##  6 Slc2a4  SLC2A4                               
 ##  7 Exd2    EXD2                                 
 ##  8 Gjc2    GJC2                                 
 ##  9 Plp1    PLP1                                 
 ## 10 Gnb4    GNB4                                 
-## # ℹ 27,644 more rows</code></pre>
+## # ℹ 28,128 more rows</code></pre>
 </div>
 <div id="pipes" class="section level2" number="5.4">
 <h2>
@@ -659,7 +659,7 @@ this data frame!</p>
 <span id="cb307-3"><a href="sec-dplyr.html#cb307-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">log_expression =</span> <span class="fu">log</span>(expression)) <span class="sc">%&gt;%</span> </span>
 <span id="cb307-4"><a href="sec-dplyr.html#cb307-4" tabindex="-1"></a>  <span class="fu">select</span>(gene, chromosome_name, phenotype_description, sample, log_expression) <span class="sc">%&gt;%</span> </span>
 <span id="cb307-5"><a href="sec-dplyr.html#cb307-5" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(phenotype_description))</span></code></pre></div>
-<pre><code>## # A tibble: 20,592 × 5
+<pre><code>## # A tibble: 21,054 × 5
 ##    gene    chromosome_name phenotype_description           sample log_expression
 ##    &lt;chr&gt;   &lt;chr&gt;           &lt;chr&gt;                           &lt;chr&gt;           &lt;dbl&gt;
 ##  1 Asl     5               abnormal circulating amino aci… GSM25…           7.06
@@ -669,10 +669,10 @@ this data frame!</p>
 ##  5 Fcrls   3               decreased CD8-positive alpha-b… GSM25…           4.44
 ##  6 Slc2a4  11              abnormal circulating glucose l… GSM25…           6.66
 ##  7 Gjc2    11              Purkinje cell degeneration      GSM25…           5.66
-##  8 Gnb4    3               abnormal behavior               GSM25…           6.98
+##  8 Gnb4    3               decreased anxiety-related resp… GSM25…           6.98
 ##  9 Tnc     4               abnormal CNS synaptic transmis… GSM25…           5.39
-## 10 Trf     9               abnormal embryo size            GSM25…           9.18
-## # ℹ 20,582 more rows</code></pre>
+## 10 Trf     9               abnormal circulating phosphate… GSM25…           9.18
+## # ℹ 21,044 more rows</code></pre>
 <p class="solution-end">
 <span class="fa fa-square-o solution-icon"></span>
 </p>
@@ -771,16 +771,16 @@ statistics. So to compute the mean <code>expression</code> by gene:</p>
 <pre><code>## # A tibble: 22 × 2
 ##    sample     mean_expression
 ##    &lt;chr&gt;                &lt;dbl&gt;
-##  1 GSM2545336           2064.
+##  1 GSM2545336           2062.
 ##  2 GSM2545337           1766.
 ##  3 GSM2545338           1668.
-##  4 GSM2545339           1697.
+##  4 GSM2545339           1696.
 ##  5 GSM2545340           1682.
 ##  6 GSM2545341           1638.
-##  7 GSM2545342           1595.
-##  8 GSM2545343           2108.
-##  9 GSM2545344           1714.
-## 10 GSM2545345           1701.
+##  7 GSM2545342           1594.
+##  8 GSM2545343           2107.
+##  9 GSM2545344           1712.
+## 10 GSM2545345           1700.
 ## # ℹ 12 more rows</code></pre>
 <p>But we can can also group by multiple columns:</p>
 <div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb317-1"><a href="sec-dplyr.html#cb317-1" tabindex="-1"></a>rna <span class="sc">%&gt;%</span></span>
@@ -1005,16 +1005,16 @@ For instance, we might want to arrange the table above by time:</p>
 <pre><code>## # A tibble: 22 × 2
 ##    sample     seq_depth
 ##    &lt;chr&gt;          &lt;dbl&gt;
-##  1 GSM2545350   3257043
-##  2 GSM2545352   3218773
-##  3 GSM2545343   3107171
-##  4 GSM2545336   3042972
-##  5 GSM2545380   3039279
-##  6 GSM2545353   2955334
-##  7 GSM2545362   2915742
-##  8 GSM2545348   2915189
-##  9 GSM2545351   2784988
-## 10 GSM2545349   2760409
+##  1 GSM2545350   3255566
+##  2 GSM2545352   3216163
+##  3 GSM2545343   3105652
+##  4 GSM2545336   3039671
+##  5 GSM2545380   3036098
+##  6 GSM2545353   2953249
+##  7 GSM2545348   2913678
+##  8 GSM2545362   2913517
+##  9 GSM2545351   2782464
+## 10 GSM2545349   2758006
 ## # ℹ 12 more rows</code></pre>
 <p class="solution-end">
 <span class="fa fa-square-o solution-icon"></span>

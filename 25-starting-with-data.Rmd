@@ -64,10 +64,11 @@ remote file, names it `"rnaseq.csv"` and adds it to a preexisting
 folder named `"data"`.
 
 ```{r, eval = TRUE}
-if (!file.exists("data/rnaseq.csv"))
-download.file(url = "https://raw.githubusercontent.com/Bioconductor/bioconductor-teaching/master/data/GSE96870/rnaseq.csv",
+download.file(url = "https://uclouvain-cbio.github.io/WSBIM1207/data/rnaseq.csv",
               destfile = "data/rnaseq.csv")
 ```
+
+It can also be downloaded [here](https://uclouvain-cbio.github.io/WSBIM1207/data/rnaseq.csv).
 
 You are now ready to load the data:
 
@@ -622,7 +623,7 @@ You can also attribute a name to each element of a list. Give the following name
 
 `r msmbstyle::solution_begin()`
 ```{r}
-names(l) <- c("numbers", "alphabet", "installed_packages", 
+names(l) <- c("numbers", "alphabet", "installed_packages",
               "cars", "random")
 names(l)
 ```
@@ -718,4 +719,3 @@ To conclude, when it comes to saving data from R that will be loaded
 again in R, saving and loading is the preferred approach. If tabular
 data need to be shared with somebody that is not using R, then
 exporting to a text-based spreadsheet is a good alternative.
-
