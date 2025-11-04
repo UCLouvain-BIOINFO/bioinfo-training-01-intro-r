@@ -151,7 +151,7 @@ We're going to take a messy data and describe how we would clean it
 up.
 
 1. Download a messy data by clicking
-   [here](https://github.com/UCLouvain-CBIO/WSBIM1207/raw/master/data/messy_covid.xlsx).
+   [here](https://uclouvain-cbio.github.io/WSBIM1207/data/messy_covid.xlsx).
 
 2. Open up the data in a spreadsheet program.
 
