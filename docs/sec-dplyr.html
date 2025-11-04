@@ -229,10 +229,10 @@ this common problem of reshaping data and provides tools for manipulating
 data in a tidy way.</p></li>
 </ul>
 <p>To learn more about <strong><code>dplyr</code></strong> and <strong><code>tidyr</code></strong> after the workshop,
-you may want to check out this <a href="https://github.com/rstudio/cheatsheets/blob/main/data-transformation.pdf">handy data transformation with
+you may want to check out this <a href="https://rstudio.github.io/cheatsheets/html/data-transformation.html">handy data transformation with
 <strong><code>dplyr</code></strong>
 cheatsheet</a>
-and this <a href="https://github.com/rstudio/cheatsheets/blob/main/data-import.pdf">one about
+and this <a href="https://rstudio.github.io/cheatsheets/html/tidyr.html">one about
 <strong><code>tidyr</code></strong></a>.</p>
 <ul>
 <li>The <strong><code>tidyverse</code></strong> package is an “umbrella-package” that installs
@@ -503,8 +503,8 @@ to keep only the <code>gene</code>, <code>sample</code>, <code>tissue</code>, an
 <p>The pipe <code>%&gt;%</code> takes the object on its left and passes it directly as the first
 argument to the function on its right, we don’t need to explicitly include the data frame
 as an argument to the <code>filter()</code> and <code>select()</code> functions any more.</p>
-<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb297-1"><a href="sec-dplyr.html#cb297-1" tabindex="-1"></a>rna <span class="sc">%&gt;%</span> </span>
-<span id="cb297-2"><a href="sec-dplyr.html#cb297-2" tabindex="-1"></a>  <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="st">"Male"</span>) <span class="sc">%&gt;%</span> </span>
+<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb297-1"><a href="sec-dplyr.html#cb297-1" tabindex="-1"></a>rna <span class="sc">%&gt;%</span></span>
+<span id="cb297-2"><a href="sec-dplyr.html#cb297-2" tabindex="-1"></a>  <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="st">"Male"</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb297-3"><a href="sec-dplyr.html#cb297-3" tabindex="-1"></a>  <span class="fu">select</span>(gene, sample, tissue, expression)</span></code></pre></div>
 <pre><code>## # A tibble: 14,740 × 4
 ##    gene    sample     tissue     expression
@@ -529,8 +529,8 @@ simple, but by combining them into linear workflows with the pipe, we can accomp
 more complex manipulations of data frames.</p>
 <p>If we want to create a new object with this smaller version of the data, we
 can assign it a new name:</p>
-<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb299-1"><a href="sec-dplyr.html#cb299-1" tabindex="-1"></a>rna3 <span class="ot">&lt;-</span> rna <span class="sc">%&gt;%</span> </span>
-<span id="cb299-2"><a href="sec-dplyr.html#cb299-2" tabindex="-1"></a>  <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="st">"Male"</span>) <span class="sc">%&gt;%</span> </span>
+<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb299-1"><a href="sec-dplyr.html#cb299-1" tabindex="-1"></a>rna3 <span class="ot">&lt;-</span> rna <span class="sc">%&gt;%</span></span>
+<span id="cb299-2"><a href="sec-dplyr.html#cb299-2" tabindex="-1"></a>  <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="st">"Male"</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb299-3"><a href="sec-dplyr.html#cb299-3" tabindex="-1"></a>  <span class="fu">select</span>(gene, sample, tissue, expression)</span>
 <span id="cb299-4"><a href="sec-dplyr.html#cb299-4" tabindex="-1"></a></span>
 <span id="cb299-5"><a href="sec-dplyr.html#cb299-5" tabindex="-1"></a>rna3</span></code></pre></div>
@@ -567,8 +567,8 @@ than 50000 in female mice at time 0, and retain only the columns <code>gene</cod
 </p>
 <div id="sol-body-25" class="solution-body" style="display: none;">
 <div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb301-1"><a href="sec-dplyr.html#cb301-1" tabindex="-1"></a>rna <span class="sc">%&gt;%</span></span>
-<span id="cb301-2"><a href="sec-dplyr.html#cb301-2" tabindex="-1"></a>  <span class="fu">filter</span>(expression <span class="sc">&gt;</span> <span class="dv">50000</span>, </span>
-<span id="cb301-3"><a href="sec-dplyr.html#cb301-3" tabindex="-1"></a>         sex <span class="sc">==</span> <span class="st">"Female"</span>, </span>
+<span id="cb301-2"><a href="sec-dplyr.html#cb301-2" tabindex="-1"></a>  <span class="fu">filter</span>(expression <span class="sc">&gt;</span> <span class="dv">50000</span>,</span>
+<span id="cb301-3"><a href="sec-dplyr.html#cb301-3" tabindex="-1"></a>         sex <span class="sc">==</span> <span class="st">"Female"</span>,</span>
 <span id="cb301-4"><a href="sec-dplyr.html#cb301-4" tabindex="-1"></a>         time <span class="sc">==</span> <span class="dv">0</span> ) <span class="sc">%&gt;%</span></span>
 <span id="cb301-5"><a href="sec-dplyr.html#cb301-5" tabindex="-1"></a>  <span class="fu">select</span>(gene, sample, time, expression, age)</span></code></pre></div>
 <pre><code>## # A tibble: 9 × 5
@@ -597,9 +597,9 @@ than 50000 in female mice at time 0, and retain only the columns <code>gene</cod
 columns, for example to do unit conversions, or to find the ratio of values in two
 columns. For this we’ll use <code>mutate()</code>.</p>
 <p>To create a new column of time in hours:</p>
-<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="sec-dplyr.html#cb303-1" tabindex="-1"></a>rna <span class="sc">%&gt;%</span>  </span>
-<span id="cb303-2"><a href="sec-dplyr.html#cb303-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">time_hours =</span> time <span class="sc">*</span> <span class="dv">24</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb303-3"><a href="sec-dplyr.html#cb303-3" tabindex="-1"></a>  <span class="fu">select</span>(time, time_hours) </span></code></pre></div>
+<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="sec-dplyr.html#cb303-1" tabindex="-1"></a>rna <span class="sc">%&gt;%</span></span>
+<span id="cb303-2"><a href="sec-dplyr.html#cb303-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">time_hours =</span> time <span class="sc">*</span> <span class="dv">24</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb303-3"><a href="sec-dplyr.html#cb303-3" tabindex="-1"></a>  <span class="fu">select</span>(time, time_hours)</span></code></pre></div>
 <pre><code>## # A tibble: 32,428 × 2
 ##     time time_hours
 ##    &lt;dbl&gt;      &lt;dbl&gt;
@@ -615,10 +615,10 @@ columns. For this we’ll use <code>mutate()</code>.</p>
 ## 10     8        192
 ## # ℹ 32,418 more rows</code></pre>
 <p>You can also create a second new column based on the first new column within the same call of <code>mutate()</code>:</p>
-<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="sec-dplyr.html#cb305-1" tabindex="-1"></a>rna <span class="sc">%&gt;%</span>  </span>
-<span id="cb305-2"><a href="sec-dplyr.html#cb305-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">time_hours =</span> time <span class="sc">*</span> <span class="dv">24</span>, </span>
-<span id="cb305-3"><a href="sec-dplyr.html#cb305-3" tabindex="-1"></a>         <span class="at">time_mn =</span> time_hours <span class="sc">*</span> <span class="dv">60</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb305-4"><a href="sec-dplyr.html#cb305-4" tabindex="-1"></a>  <span class="fu">select</span>(time, time_hours, time_mn) </span></code></pre></div>
+<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="sec-dplyr.html#cb305-1" tabindex="-1"></a>rna <span class="sc">%&gt;%</span></span>
+<span id="cb305-2"><a href="sec-dplyr.html#cb305-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">time_hours =</span> time <span class="sc">*</span> <span class="dv">24</span>,</span>
+<span id="cb305-3"><a href="sec-dplyr.html#cb305-3" tabindex="-1"></a>         <span class="at">time_mn =</span> time_hours <span class="sc">*</span> <span class="dv">60</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb305-4"><a href="sec-dplyr.html#cb305-4" tabindex="-1"></a>  <span class="fu">select</span>(time, time_hours, time_mn)</span></code></pre></div>
 <pre><code>## # A tibble: 32,428 × 3
 ##     time time_hours time_mn
 ##    &lt;dbl&gt;      &lt;dbl&gt;   &lt;dbl&gt;
@@ -654,10 +654,10 @@ this data frame!</p>
 ► Solution<span id="sol-start-26" class="fa fa-plus-square solution-icon clickable" onclick="toggle_visibility('sol-body-26', 'sol-start-26')"></span>
 </p>
 <div id="sol-body-26" class="solution-body" style="display: none;">
-<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb307-1"><a href="sec-dplyr.html#cb307-1" tabindex="-1"></a>rna <span class="sc">%&gt;%</span> </span>
+<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb307-1"><a href="sec-dplyr.html#cb307-1" tabindex="-1"></a>rna <span class="sc">%&gt;%</span></span>
 <span id="cb307-2"><a href="sec-dplyr.html#cb307-2" tabindex="-1"></a>  <span class="fu">filter</span>(chromosome_name <span class="sc">!=</span> <span class="st">"X"</span>, chromosome_name <span class="sc">!=</span> <span class="st">"Y"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb307-3"><a href="sec-dplyr.html#cb307-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">log_expression =</span> <span class="fu">log</span>(expression)) <span class="sc">%&gt;%</span> </span>
-<span id="cb307-4"><a href="sec-dplyr.html#cb307-4" tabindex="-1"></a>  <span class="fu">select</span>(gene, chromosome_name, phenotype_description, sample, log_expression) <span class="sc">%&gt;%</span> </span>
+<span id="cb307-3"><a href="sec-dplyr.html#cb307-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">log_expression =</span> <span class="fu">log</span>(expression)) <span class="sc">%&gt;%</span></span>
+<span id="cb307-4"><a href="sec-dplyr.html#cb307-4" tabindex="-1"></a>  <span class="fu">select</span>(gene, chromosome_name, phenotype_description, sample, log_expression) <span class="sc">%&gt;%</span></span>
 <span id="cb307-5"><a href="sec-dplyr.html#cb307-5" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(phenotype_description))</span></code></pre></div>
 <pre><code>## # A tibble: 21,054 × 5
 ##    gene    chromosome_name phenotype_description           sample log_expression
@@ -809,7 +809,7 @@ column indicating the median <code>expression</code> by gene and by condition:</
 <div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb320-1"><a href="sec-dplyr.html#cb320-1" tabindex="-1"></a>rna <span class="sc">%&gt;%</span></span>
 <span id="cb320-2"><a href="sec-dplyr.html#cb320-2" tabindex="-1"></a>  <span class="fu">group_by</span>(gene, infection, time) <span class="sc">%&gt;%</span></span>
 <span id="cb320-3"><a href="sec-dplyr.html#cb320-3" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean_expression =</span> <span class="fu">mean</span>(expression),</span>
-<span id="cb320-4"><a href="sec-dplyr.html#cb320-4" tabindex="-1"></a>            <span class="at">median_expression =</span> <span class="fu">median</span>(expression)) </span></code></pre></div>
+<span id="cb320-4"><a href="sec-dplyr.html#cb320-4" tabindex="-1"></a>            <span class="at">median_expression =</span> <span class="fu">median</span>(expression))</span></code></pre></div>
 <pre><code>## `summarise()` has grouped output by 'gene', 'infection'. You can override using
 ## the `.groups` argument.</code></pre>
 <pre><code>## # A tibble: 4,422 × 5
@@ -843,10 +843,10 @@ column indicating the median <code>expression</code> by gene and by condition:</
 ► Solution<span id="sol-start-27" class="fa fa-plus-square solution-icon clickable" onclick="toggle_visibility('sol-body-27', 'sol-start-27')"></span>
 </p>
 <div id="sol-body-27" class="solution-body" style="display: none;">
-<div class="sourceCode" id="cb323"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb323-1"><a href="sec-dplyr.html#cb323-1" tabindex="-1"></a>rna <span class="sc">%&gt;%</span> </span>
-<span id="cb323-2"><a href="sec-dplyr.html#cb323-2" tabindex="-1"></a>  <span class="fu">filter</span>(gene <span class="sc">==</span> <span class="st">"Dok3"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb323-3"><a href="sec-dplyr.html#cb323-3" tabindex="-1"></a>  <span class="fu">group_by</span>(time) <span class="sc">%&gt;%</span> </span>
-<span id="cb323-4"><a href="sec-dplyr.html#cb323-4" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean =</span> <span class="fu">mean</span>(expression)) </span></code></pre></div>
+<div class="sourceCode" id="cb323"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb323-1"><a href="sec-dplyr.html#cb323-1" tabindex="-1"></a>rna <span class="sc">%&gt;%</span></span>
+<span id="cb323-2"><a href="sec-dplyr.html#cb323-2" tabindex="-1"></a>  <span class="fu">filter</span>(gene <span class="sc">==</span> <span class="st">"Dok3"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb323-3"><a href="sec-dplyr.html#cb323-3" tabindex="-1"></a>  <span class="fu">group_by</span>(time) <span class="sc">%&gt;%</span></span>
+<span id="cb323-4"><a href="sec-dplyr.html#cb323-4" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean =</span> <span class="fu">mean</span>(expression))</span></code></pre></div>
 <pre><code>## # A tibble: 3 × 2
 ##    time  mean
 ##   &lt;dbl&gt; &lt;dbl&gt;
@@ -876,7 +876,7 @@ each infected and non infected samples, we would do:</p>
 ## 2 NonInfected 10318</code></pre>
 <p>The <code>count()</code> function is shorthand for something we’ve already seen: grouping by a variable, and summarizing it by counting the number of observations in that group. In other words, <code>rna %&gt;% count()</code> is equivalent to:</p>
 <div class="sourceCode" id="cb327"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb327-1"><a href="sec-dplyr.html#cb327-1" tabindex="-1"></a>rna <span class="sc">%&gt;%</span></span>
-<span id="cb327-2"><a href="sec-dplyr.html#cb327-2" tabindex="-1"></a>    <span class="fu">group_by</span>(infection) <span class="sc">%&gt;%</span> </span>
+<span id="cb327-2"><a href="sec-dplyr.html#cb327-2" tabindex="-1"></a>    <span class="fu">group_by</span>(infection) <span class="sc">%&gt;%</span></span>
 <span id="cb327-3"><a href="sec-dplyr.html#cb327-3" tabindex="-1"></a>    <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>())</span></code></pre></div>
 <pre><code>## # A tibble: 2 × 2
 ##   infection       n
@@ -897,7 +897,7 @@ we would specify the first and the second factor as the arguments of <code>count
 ## 3 NonInfected     0 10318</code></pre>
 <p>which is equivalent to this:</p>
 <div class="sourceCode" id="cb331"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb331-1"><a href="sec-dplyr.html#cb331-1" tabindex="-1"></a>rna <span class="sc">%&gt;%</span></span>
-<span id="cb331-2"><a href="sec-dplyr.html#cb331-2" tabindex="-1"></a>  <span class="fu">group_by</span>(infection, time) <span class="sc">%&gt;%</span> </span>
+<span id="cb331-2"><a href="sec-dplyr.html#cb331-2" tabindex="-1"></a>  <span class="fu">group_by</span>(infection, time) <span class="sc">%&gt;%</span></span>
 <span id="cb331-3"><a href="sec-dplyr.html#cb331-3" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">n =</span> <span class="fu">n</span>())</span></code></pre></div>
 <pre><code>## `summarise()` has grouped output by 'infection'. You can override using the
 ## `.groups` argument.</code></pre>
@@ -959,7 +959,7 @@ For instance, we might want to arrange the table above by time:</p>
 </p>
 <div id="sol-body-28" class="solution-body" style="display: none;">
 <div class="sourceCode" id="cb340"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb340-1"><a href="sec-dplyr.html#cb340-1" tabindex="-1"></a>rna <span class="sc">%&gt;%</span></span>
-<span id="cb340-2"><a href="sec-dplyr.html#cb340-2" tabindex="-1"></a>  <span class="fu">count</span>(sample) </span></code></pre></div>
+<span id="cb340-2"><a href="sec-dplyr.html#cb340-2" tabindex="-1"></a>  <span class="fu">count</span>(sample)</span></code></pre></div>
 <pre><code>## # A tibble: 22 × 2
 ##    sample         n
 ##    &lt;chr&gt;      &lt;int&gt;
@@ -999,8 +999,8 @@ For instance, we might want to arrange the table above by time:</p>
 </p>
 <div id="sol-body-29" class="solution-body" style="display: none;">
 <div class="sourceCode" id="cb342"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb342-1"><a href="sec-dplyr.html#cb342-1" tabindex="-1"></a>rna <span class="sc">%&gt;%</span></span>
-<span id="cb342-2"><a href="sec-dplyr.html#cb342-2" tabindex="-1"></a>  <span class="fu">group_by</span>(sample) <span class="sc">%&gt;%</span> </span>
-<span id="cb342-3"><a href="sec-dplyr.html#cb342-3" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">seq_depth =</span> <span class="fu">sum</span>(expression)) <span class="sc">%&gt;%</span> </span>
+<span id="cb342-2"><a href="sec-dplyr.html#cb342-2" tabindex="-1"></a>  <span class="fu">group_by</span>(sample) <span class="sc">%&gt;%</span></span>
+<span id="cb342-3"><a href="sec-dplyr.html#cb342-3" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">seq_depth =</span> <span class="fu">sum</span>(expression)) <span class="sc">%&gt;%</span></span>
 <span id="cb342-4"><a href="sec-dplyr.html#cb342-4" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(seq_depth))</span></code></pre></div>
 <pre><code>## # A tibble: 22 × 2
 ##    sample     seq_depth
@@ -1040,8 +1040,8 @@ For instance, we might want to arrange the table above by time:</p>
 </p>
 <div id="sol-body-30" class="solution-body" style="display: none;">
 <div class="sourceCode" id="cb344"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb344-1"><a href="sec-dplyr.html#cb344-1" tabindex="-1"></a>rna <span class="sc">%&gt;%</span></span>
-<span id="cb344-2"><a href="sec-dplyr.html#cb344-2" tabindex="-1"></a>  <span class="fu">filter</span>(sample <span class="sc">==</span> <span class="st">"GSM2545336"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb344-3"><a href="sec-dplyr.html#cb344-3" tabindex="-1"></a>  <span class="fu">count</span>(gene_biotype) <span class="sc">%&gt;%</span> </span>
+<span id="cb344-2"><a href="sec-dplyr.html#cb344-2" tabindex="-1"></a>  <span class="fu">filter</span>(sample <span class="sc">==</span> <span class="st">"GSM2545336"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb344-3"><a href="sec-dplyr.html#cb344-3" tabindex="-1"></a>  <span class="fu">count</span>(gene_biotype) <span class="sc">%&gt;%</span></span>
 <span id="cb344-4"><a href="sec-dplyr.html#cb344-4" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(n))</span></code></pre></div>
 <pre><code>## # A tibble: 13 × 2
 ##    gene_biotype                           n
@@ -1084,8 +1084,8 @@ and calculate the mean of their log expression at time 0, time 4 and time 8.</li
 </p>
 <div id="sol-body-31" class="solution-body" style="display: none;">
 <div class="sourceCode" id="cb346"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb346-1"><a href="sec-dplyr.html#cb346-1" tabindex="-1"></a>rna <span class="sc">%&gt;%</span></span>
-<span id="cb346-2"><a href="sec-dplyr.html#cb346-2" tabindex="-1"></a>  <span class="fu">filter</span>(phenotype_description <span class="sc">==</span> <span class="st">"abnormal DNA methylation"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb346-3"><a href="sec-dplyr.html#cb346-3" tabindex="-1"></a>  <span class="fu">group_by</span>(gene, time) <span class="sc">%&gt;%</span> </span>
+<span id="cb346-2"><a href="sec-dplyr.html#cb346-2" tabindex="-1"></a>  <span class="fu">filter</span>(phenotype_description <span class="sc">==</span> <span class="st">"abnormal DNA methylation"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb346-3"><a href="sec-dplyr.html#cb346-3" tabindex="-1"></a>  <span class="fu">group_by</span>(gene, time) <span class="sc">%&gt;%</span></span>
 <span id="cb346-4"><a href="sec-dplyr.html#cb346-4" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean_expression =</span> <span class="fu">mean</span>(<span class="fu">log</span>(expression)))</span></code></pre></div>
 <pre><code>## `summarise()` has grouped output by 'gene'. You can override using the
 ## `.groups` argument.</code></pre>
@@ -1116,7 +1116,7 @@ associated with a combination of 2 other variables: <code>gene</code> and <code>
 the sample (organism, age, sex,…) or the gene (gene_biotype, ENTREZ_ID, product…).
 The variables that don’t change with genes or with samples will have the same value in all the rows.</p>
 <div class="sourceCode" id="cb349"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb349-1"><a href="sec-dplyr.html#cb349-1" tabindex="-1"></a>rna <span class="sc">%&gt;%</span></span>
-<span id="cb349-2"><a href="sec-dplyr.html#cb349-2" tabindex="-1"></a>  <span class="fu">arrange</span>(gene) </span></code></pre></div>
+<span id="cb349-2"><a href="sec-dplyr.html#cb349-2" tabindex="-1"></a>  <span class="fu">arrange</span>(gene)</span></code></pre></div>
 <pre><code>## # A tibble: 32,428 × 19
 ##    gene     sample expression organism   age sex   infection strain  time tissue
 ##    &lt;chr&gt;    &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;    &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;     &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt; 
@@ -1182,7 +1182,7 @@ details).</p>
 </h3>
 <p>Let’s first select the 3 first columns of <code>rna</code> and use <code>pivot_wider()</code>
 to transform data in a wide-format.</p>
-<div class="sourceCode" id="cb352"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb352-1"><a href="sec-dplyr.html#cb352-1" tabindex="-1"></a>rna_exp <span class="ot">&lt;-</span> rna <span class="sc">%&gt;%</span> </span>
+<div class="sourceCode" id="cb352"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb352-1"><a href="sec-dplyr.html#cb352-1" tabindex="-1"></a>rna_exp <span class="ot">&lt;-</span> rna <span class="sc">%&gt;%</span></span>
 <span id="cb352-2"><a href="sec-dplyr.html#cb352-2" tabindex="-1"></a>  <span class="fu">select</span>(gene, sample, expression)</span>
 <span id="cb352-3"><a href="sec-dplyr.html#cb352-3" tabindex="-1"></a>rna_exp</span></code></pre></div>
 <pre><code>## # A tibble: 32,428 × 3
@@ -1208,7 +1208,7 @@ names;</li>
 columns.</li>
 </ol>
 <p><img src="figs/pivot_wider.png"></p>
-<div class="sourceCode" id="cb354"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb354-1"><a href="sec-dplyr.html#cb354-1" tabindex="-1"></a>rna_wide <span class="ot">&lt;-</span> rna_exp <span class="sc">%&gt;%</span> </span>
+<div class="sourceCode" id="cb354"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb354-1"><a href="sec-dplyr.html#cb354-1" tabindex="-1"></a>rna_wide <span class="ot">&lt;-</span> rna_exp <span class="sc">%&gt;%</span></span>
 <span id="cb354-2"><a href="sec-dplyr.html#cb354-2" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> sample,</span>
 <span id="cb354-3"><a href="sec-dplyr.html#cb354-3" tabindex="-1"></a>              <span class="at">values_from =</span> expression)</span>
 <span id="cb354-4"><a href="sec-dplyr.html#cb354-4" tabindex="-1"></a>rna_wide</span></code></pre></div>
@@ -1247,7 +1247,7 @@ one expression value, in GSM2545338 sample.</p>
 ## 6 Apod    GSM2545338       9173
 ## 7 Cyp2d22 GSM2545338       1603</code></pre>
 <p>By default, the <code>pivot_wider()</code> function will add <code>NA</code> for missing values.</p>
-<div class="sourceCode" id="cb358"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb358-1"><a href="sec-dplyr.html#cb358-1" tabindex="-1"></a>rna_with_missing_values <span class="sc">%&gt;%</span> </span>
+<div class="sourceCode" id="cb358"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb358-1"><a href="sec-dplyr.html#cb358-1" tabindex="-1"></a>rna_with_missing_values <span class="sc">%&gt;%</span></span>
 <span id="cb358-2"><a href="sec-dplyr.html#cb358-2" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> sample,</span>
 <span id="cb358-3"><a href="sec-dplyr.html#cb358-3" tabindex="-1"></a>              <span class="at">values_from =</span> expression)</span></code></pre></div>
 <pre><code>## # A tibble: 3 × 4
@@ -1356,7 +1356,7 @@ included in the new long format.</p>
 ## 5 Asl     GSM2545338        400
 ## 6 Apod    GSM2545338       9173
 ## 7 Cyp2d22 GSM2545338       1603</code></pre>
-<div class="sourceCode" id="cb368"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb368-1"><a href="sec-dplyr.html#cb368-1" tabindex="-1"></a>wide_with_NA <span class="ot">&lt;-</span> rna_with_missing_values <span class="sc">%&gt;%</span> </span>
+<div class="sourceCode" id="cb368"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb368-1"><a href="sec-dplyr.html#cb368-1" tabindex="-1"></a>wide_with_NA <span class="ot">&lt;-</span> rna_with_missing_values <span class="sc">%&gt;%</span></span>
 <span id="cb368-2"><a href="sec-dplyr.html#cb368-2" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> sample,</span>
 <span id="cb368-3"><a href="sec-dplyr.html#cb368-3" tabindex="-1"></a>              <span class="at">values_from =</span> expression)</span>
 <span id="cb368-4"><a href="sec-dplyr.html#cb368-4" tabindex="-1"></a>wide_with_NA</span></code></pre></div>
@@ -1407,9 +1407,9 @@ as in the following tibble:</p>
 <div id="sol-body-32" class="solution-body" style="display: none;">
 <p>Let’s first calculate the mean expression level of X and Y linked genes from
 male and female samples…</p>
-<div class="sourceCode" id="cb372"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb372-1"><a href="sec-dplyr.html#cb372-1" tabindex="-1"></a> rna <span class="sc">%&gt;%</span> </span>
-<span id="cb372-2"><a href="sec-dplyr.html#cb372-2" tabindex="-1"></a>  <span class="fu">filter</span>(chromosome_name <span class="sc">==</span> <span class="st">"Y"</span> <span class="sc">|</span> chromosome_name <span class="sc">==</span> <span class="st">"X"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb372-3"><a href="sec-dplyr.html#cb372-3" tabindex="-1"></a>  <span class="fu">group_by</span>(sex, chromosome_name) <span class="sc">%&gt;%</span> </span>
+<div class="sourceCode" id="cb372"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb372-1"><a href="sec-dplyr.html#cb372-1" tabindex="-1"></a> rna <span class="sc">%&gt;%</span></span>
+<span id="cb372-2"><a href="sec-dplyr.html#cb372-2" tabindex="-1"></a>  <span class="fu">filter</span>(chromosome_name <span class="sc">==</span> <span class="st">"Y"</span> <span class="sc">|</span> chromosome_name <span class="sc">==</span> <span class="st">"X"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb372-3"><a href="sec-dplyr.html#cb372-3" tabindex="-1"></a>  <span class="fu">group_by</span>(sex, chromosome_name) <span class="sc">%&gt;%</span></span>
 <span id="cb372-4"><a href="sec-dplyr.html#cb372-4" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean =</span> <span class="fu">mean</span>(expression))</span></code></pre></div>
 <pre><code>## `summarise()` has grouped output by 'sex'. You can override using the `.groups`
 ## argument.</code></pre>
@@ -1422,10 +1422,10 @@ male and female samples…</p>
 ## 3 Male   X               2497.
 ## 4 Male   Y               2117.</code></pre>
 <p>And pivot the table to wide format</p>
-<div class="sourceCode" id="cb375"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb375-1"><a href="sec-dplyr.html#cb375-1" tabindex="-1"></a>rna_1 <span class="ot">&lt;-</span> rna <span class="sc">%&gt;%</span> </span>
-<span id="cb375-2"><a href="sec-dplyr.html#cb375-2" tabindex="-1"></a>  <span class="fu">filter</span>(chromosome_name <span class="sc">==</span> <span class="st">"Y"</span> <span class="sc">|</span> chromosome_name <span class="sc">==</span> <span class="st">"X"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb375-3"><a href="sec-dplyr.html#cb375-3" tabindex="-1"></a>  <span class="fu">group_by</span>(sex, chromosome_name) <span class="sc">%&gt;%</span> </span>
-<span id="cb375-4"><a href="sec-dplyr.html#cb375-4" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean =</span> <span class="fu">mean</span>(expression)) <span class="sc">%&gt;%</span> </span>
+<div class="sourceCode" id="cb375"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb375-1"><a href="sec-dplyr.html#cb375-1" tabindex="-1"></a>rna_1 <span class="ot">&lt;-</span> rna <span class="sc">%&gt;%</span></span>
+<span id="cb375-2"><a href="sec-dplyr.html#cb375-2" tabindex="-1"></a>  <span class="fu">filter</span>(chromosome_name <span class="sc">==</span> <span class="st">"Y"</span> <span class="sc">|</span> chromosome_name <span class="sc">==</span> <span class="st">"X"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb375-3"><a href="sec-dplyr.html#cb375-3" tabindex="-1"></a>  <span class="fu">group_by</span>(sex, chromosome_name) <span class="sc">%&gt;%</span></span>
+<span id="cb375-4"><a href="sec-dplyr.html#cb375-4" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean =</span> <span class="fu">mean</span>(expression)) <span class="sc">%&gt;%</span></span>
 <span id="cb375-5"><a href="sec-dplyr.html#cb375-5" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> sex,</span>
 <span id="cb375-6"><a href="sec-dplyr.html#cb375-6" tabindex="-1"></a>              <span class="at">values_from =</span> mean)</span></code></pre></div>
 <pre><code>## `summarise()` has grouped output by 'sex'. You can override using the `.groups`
@@ -1458,7 +1458,7 @@ each row is a unique <code>chromosome_name</code> by <code>gender</code> combina
 ► Solution<span id="sol-start-33" class="fa fa-plus-square solution-icon clickable" onclick="toggle_visibility('sol-body-33', 'sol-start-33')"></span>
 </p>
 <div id="sol-body-33" class="solution-body" style="display: none;">
-<div class="sourceCode" id="cb379"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb379-1"><a href="sec-dplyr.html#cb379-1" tabindex="-1"></a>rna_1 <span class="sc">%&gt;%</span> </span>
+<div class="sourceCode" id="cb379"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb379-1"><a href="sec-dplyr.html#cb379-1" tabindex="-1"></a>rna_1 <span class="sc">%&gt;%</span></span>
 <span id="cb379-2"><a href="sec-dplyr.html#cb379-2" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">names_to =</span> <span class="st">"gender"</span>,</span>
 <span id="cb379-3"><a href="sec-dplyr.html#cb379-3" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">"mean"</span>,</span>
 <span id="cb379-4"><a href="sec-dplyr.html#cb379-4" tabindex="-1"></a>               <span class="sc">-</span> chromosome_name)</span></code></pre></div>
@@ -1492,9 +1492,9 @@ the mean expression levels of genes and columns represent the different timepoin
 </p>
 <div id="sol-body-34" class="solution-body" style="display: none;">
 <p>Let’s first calculate the mean expression by gene and by time</p>
-<div class="sourceCode" id="cb381"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb381-1"><a href="sec-dplyr.html#cb381-1" tabindex="-1"></a>rna <span class="sc">%&gt;%</span> </span>
-<span id="cb381-2"><a href="sec-dplyr.html#cb381-2" tabindex="-1"></a>  <span class="fu">group_by</span>(gene, time) <span class="sc">%&gt;%</span> </span>
-<span id="cb381-3"><a href="sec-dplyr.html#cb381-3" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean_exp =</span> <span class="fu">mean</span>(expression)) </span></code></pre></div>
+<div class="sourceCode" id="cb381"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb381-1"><a href="sec-dplyr.html#cb381-1" tabindex="-1"></a>rna <span class="sc">%&gt;%</span></span>
+<span id="cb381-2"><a href="sec-dplyr.html#cb381-2" tabindex="-1"></a>  <span class="fu">group_by</span>(gene, time) <span class="sc">%&gt;%</span></span>
+<span id="cb381-3"><a href="sec-dplyr.html#cb381-3" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean_exp =</span> <span class="fu">mean</span>(expression))</span></code></pre></div>
 <pre><code>## `summarise()` has grouped output by 'gene'. You can override using the
 ## `.groups` argument.</code></pre>
 <pre><code>## # A tibble: 4,422 × 3
@@ -1513,9 +1513,9 @@ the mean expression levels of genes and columns represent the different timepoin
 ## 10 Aamp         0    4603.
 ## # ℹ 4,412 more rows</code></pre>
 <p>before using the pivot_wider() function</p>
-<div class="sourceCode" id="cb384"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb384-1"><a href="sec-dplyr.html#cb384-1" tabindex="-1"></a>rna_time <span class="ot">&lt;-</span> rna <span class="sc">%&gt;%</span> </span>
-<span id="cb384-2"><a href="sec-dplyr.html#cb384-2" tabindex="-1"></a>  <span class="fu">group_by</span>(gene, time) <span class="sc">%&gt;%</span> </span>
-<span id="cb384-3"><a href="sec-dplyr.html#cb384-3" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean_exp =</span> <span class="fu">mean</span>(expression)) <span class="sc">%&gt;%</span> </span>
+<div class="sourceCode" id="cb384"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb384-1"><a href="sec-dplyr.html#cb384-1" tabindex="-1"></a>rna_time <span class="ot">&lt;-</span> rna <span class="sc">%&gt;%</span></span>
+<span id="cb384-2"><a href="sec-dplyr.html#cb384-2" tabindex="-1"></a>  <span class="fu">group_by</span>(gene, time) <span class="sc">%&gt;%</span></span>
+<span id="cb384-3"><a href="sec-dplyr.html#cb384-3" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean_exp =</span> <span class="fu">mean</span>(expression)) <span class="sc">%&gt;%</span></span>
 <span id="cb384-4"><a href="sec-dplyr.html#cb384-4" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> time,</span>
 <span id="cb384-5"><a href="sec-dplyr.html#cb384-5" tabindex="-1"></a>              <span class="at">values_from =</span> mean_exp)</span></code></pre></div>
 <pre><code>## `summarise()` has grouped output by 'gene'. You can override using the
@@ -1539,11 +1539,11 @@ the mean expression levels of genes and columns represent the different timepoin
 <p>Notice that this generates a tibble with some column names starting by a number.
 If we wanted to select the column corresponding to the timepoints,
 we could not use the column names directly… What happens when we select the colum 4?</p>
-<div class="sourceCode" id="cb388"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb388-1"><a href="sec-dplyr.html#cb388-1" tabindex="-1"></a>rna <span class="sc">%&gt;%</span> </span>
-<span id="cb388-2"><a href="sec-dplyr.html#cb388-2" tabindex="-1"></a>  <span class="fu">group_by</span>(gene, time) <span class="sc">%&gt;%</span> </span>
-<span id="cb388-3"><a href="sec-dplyr.html#cb388-3" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean_exp =</span> <span class="fu">mean</span>(expression)) <span class="sc">%&gt;%</span> </span>
+<div class="sourceCode" id="cb388"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb388-1"><a href="sec-dplyr.html#cb388-1" tabindex="-1"></a>rna <span class="sc">%&gt;%</span></span>
+<span id="cb388-2"><a href="sec-dplyr.html#cb388-2" tabindex="-1"></a>  <span class="fu">group_by</span>(gene, time) <span class="sc">%&gt;%</span></span>
+<span id="cb388-3"><a href="sec-dplyr.html#cb388-3" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean_exp =</span> <span class="fu">mean</span>(expression)) <span class="sc">%&gt;%</span></span>
 <span id="cb388-4"><a href="sec-dplyr.html#cb388-4" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> time,</span>
-<span id="cb388-5"><a href="sec-dplyr.html#cb388-5" tabindex="-1"></a>              <span class="at">values_from =</span> mean_exp) <span class="sc">%&gt;%</span> </span>
+<span id="cb388-5"><a href="sec-dplyr.html#cb388-5" tabindex="-1"></a>              <span class="at">values_from =</span> mean_exp) <span class="sc">%&gt;%</span></span>
 <span id="cb388-6"><a href="sec-dplyr.html#cb388-6" tabindex="-1"></a>  <span class="fu">select</span>(gene, <span class="dv">4</span>)</span></code></pre></div>
 <pre><code>## `summarise()` has grouped output by 'gene'. You can override using the
 ## `.groups` argument.</code></pre>
@@ -1563,11 +1563,11 @@ we could not use the column names directly… What happens when we select the co
 ## 10 Abl2     2131.  
 ## # ℹ 1,464 more rows</code></pre>
 <p>To select the timepoint 4, we would have to quote the column name, with backticks “`”</p>
-<div class="sourceCode" id="cb391"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb391-1"><a href="sec-dplyr.html#cb391-1" tabindex="-1"></a>rna <span class="sc">%&gt;%</span> </span>
-<span id="cb391-2"><a href="sec-dplyr.html#cb391-2" tabindex="-1"></a>  <span class="fu">group_by</span>(gene, time) <span class="sc">%&gt;%</span> </span>
-<span id="cb391-3"><a href="sec-dplyr.html#cb391-3" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean_exp =</span> <span class="fu">mean</span>(expression)) <span class="sc">%&gt;%</span> </span>
+<div class="sourceCode" id="cb391"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb391-1"><a href="sec-dplyr.html#cb391-1" tabindex="-1"></a>rna <span class="sc">%&gt;%</span></span>
+<span id="cb391-2"><a href="sec-dplyr.html#cb391-2" tabindex="-1"></a>  <span class="fu">group_by</span>(gene, time) <span class="sc">%&gt;%</span></span>
+<span id="cb391-3"><a href="sec-dplyr.html#cb391-3" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean_exp =</span> <span class="fu">mean</span>(expression)) <span class="sc">%&gt;%</span></span>
 <span id="cb391-4"><a href="sec-dplyr.html#cb391-4" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> time,</span>
-<span id="cb391-5"><a href="sec-dplyr.html#cb391-5" tabindex="-1"></a>              <span class="at">values_from =</span> mean_exp) <span class="sc">%&gt;%</span> </span>
+<span id="cb391-5"><a href="sec-dplyr.html#cb391-5" tabindex="-1"></a>              <span class="at">values_from =</span> mean_exp) <span class="sc">%&gt;%</span></span>
 <span id="cb391-6"><a href="sec-dplyr.html#cb391-6" tabindex="-1"></a>  <span class="fu">select</span>(gene, <span class="st">`</span><span class="at">4</span><span class="st">`</span>)</span></code></pre></div>
 <pre><code>## `summarise()` has grouped output by 'gene'. You can override using the
 ## `.groups` argument.</code></pre>
@@ -1588,12 +1588,12 @@ we could not use the column names directly… What happens when we select the co
 ## # ℹ 1,464 more rows</code></pre>
 <p>Another possibility would be to rename the column,
 choosing a name that doesn’t start by a number :</p>
-<div class="sourceCode" id="cb394"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb394-1"><a href="sec-dplyr.html#cb394-1" tabindex="-1"></a>rna <span class="sc">%&gt;%</span> </span>
-<span id="cb394-2"><a href="sec-dplyr.html#cb394-2" tabindex="-1"></a>  <span class="fu">group_by</span>(gene, time) <span class="sc">%&gt;%</span> </span>
-<span id="cb394-3"><a href="sec-dplyr.html#cb394-3" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean_exp =</span> <span class="fu">mean</span>(expression)) <span class="sc">%&gt;%</span> </span>
+<div class="sourceCode" id="cb394"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb394-1"><a href="sec-dplyr.html#cb394-1" tabindex="-1"></a>rna <span class="sc">%&gt;%</span></span>
+<span id="cb394-2"><a href="sec-dplyr.html#cb394-2" tabindex="-1"></a>  <span class="fu">group_by</span>(gene, time) <span class="sc">%&gt;%</span></span>
+<span id="cb394-3"><a href="sec-dplyr.html#cb394-3" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean_exp =</span> <span class="fu">mean</span>(expression)) <span class="sc">%&gt;%</span></span>
 <span id="cb394-4"><a href="sec-dplyr.html#cb394-4" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> time,</span>
-<span id="cb394-5"><a href="sec-dplyr.html#cb394-5" tabindex="-1"></a>              <span class="at">values_from =</span> mean_exp) <span class="sc">%&gt;%</span> </span>
-<span id="cb394-6"><a href="sec-dplyr.html#cb394-6" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="st">"time0"</span> <span class="ot">=</span> <span class="st">`</span><span class="at">0</span><span class="st">`</span>, <span class="st">"time4"</span> <span class="ot">=</span> <span class="st">`</span><span class="at">4</span><span class="st">`</span>, <span class="st">"time8"</span> <span class="ot">=</span> <span class="st">`</span><span class="at">8</span><span class="st">`</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb394-5"><a href="sec-dplyr.html#cb394-5" tabindex="-1"></a>              <span class="at">values_from =</span> mean_exp) <span class="sc">%&gt;%</span></span>
+<span id="cb394-6"><a href="sec-dplyr.html#cb394-6" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="st">"time0"</span> <span class="ot">=</span> <span class="st">`</span><span class="at">0</span><span class="st">`</span>, <span class="st">"time4"</span> <span class="ot">=</span> <span class="st">`</span><span class="at">4</span><span class="st">`</span>, <span class="st">"time8"</span> <span class="ot">=</span> <span class="st">`</span><span class="at">8</span><span class="st">`</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb394-7"><a href="sec-dplyr.html#cb394-7" tabindex="-1"></a>  <span class="fu">select</span>(gene, time4)</span></code></pre></div>
 <pre><code>## `summarise()` has grouped output by 'gene'. You can override using the
 ## `.groups` argument.</code></pre>
@@ -1654,8 +1654,8 @@ Convert this table in a long-format table gathering the foldchanges calculated.<
 ## 10 Abl2     2170.   2078.   2131.  
 ## # ℹ 1,464 more rows</code></pre>
 <p>Calculate FoldChanges:</p>
-<div class="sourceCode" id="cb399"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb399-1"><a href="sec-dplyr.html#cb399-1" tabindex="-1"></a>rna_time <span class="sc">%&gt;%</span> </span>
-<span id="cb399-2"><a href="sec-dplyr.html#cb399-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">time_8_vs_0 =</span> <span class="st">`</span><span class="at">8</span><span class="st">`</span> <span class="sc">/</span> <span class="st">`</span><span class="at">0</span><span class="st">`</span>, <span class="at">time_8_vs_4 =</span> <span class="st">`</span><span class="at">8</span><span class="st">`</span> <span class="sc">/</span> <span class="st">`</span><span class="at">4</span><span class="st">`</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb399"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb399-1"><a href="sec-dplyr.html#cb399-1" tabindex="-1"></a>rna_time <span class="sc">%&gt;%</span></span>
+<span id="cb399-2"><a href="sec-dplyr.html#cb399-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">time_8_vs_0 =</span> <span class="st">`</span><span class="at">8</span><span class="st">`</span> <span class="sc">/</span> <span class="st">`</span><span class="at">0</span><span class="st">`</span>, <span class="at">time_8_vs_4 =</span> <span class="st">`</span><span class="at">8</span><span class="st">`</span> <span class="sc">/</span> <span class="st">`</span><span class="at">4</span><span class="st">`</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 1,474 × 6
 ## # Groups:   gene [1,474]
 ##    gene         `0`     `4`     `8` time_8_vs_0 time_8_vs_4
@@ -1672,8 +1672,8 @@ Convert this table in a long-format table gathering the foldchanges calculated.<
 ## 10 Abl2     2170.   2078.   2131.         0.982       1.03 
 ## # ℹ 1,464 more rows</code></pre>
 <p>And use the pivot_longer() function:</p>
-<div class="sourceCode" id="cb401"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb401-1"><a href="sec-dplyr.html#cb401-1" tabindex="-1"></a>rna_time <span class="sc">%&gt;%</span> </span>
-<span id="cb401-2"><a href="sec-dplyr.html#cb401-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">time_8_vs_0 =</span> <span class="st">`</span><span class="at">8</span><span class="st">`</span> <span class="sc">/</span> <span class="st">`</span><span class="at">0</span><span class="st">`</span>, <span class="at">time_8_vs_4 =</span> <span class="st">`</span><span class="at">8</span><span class="st">`</span> <span class="sc">/</span> <span class="st">`</span><span class="at">4</span><span class="st">`</span>) <span class="sc">%&gt;%</span> </span>
+<div class="sourceCode" id="cb401"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb401-1"><a href="sec-dplyr.html#cb401-1" tabindex="-1"></a>rna_time <span class="sc">%&gt;%</span></span>
+<span id="cb401-2"><a href="sec-dplyr.html#cb401-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">time_8_vs_0 =</span> <span class="st">`</span><span class="at">8</span><span class="st">`</span> <span class="sc">/</span> <span class="st">`</span><span class="at">0</span><span class="st">`</span>, <span class="at">time_8_vs_4 =</span> <span class="st">`</span><span class="at">8</span><span class="st">`</span> <span class="sc">/</span> <span class="st">`</span><span class="at">4</span><span class="st">`</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb401-3"><a href="sec-dplyr.html#cb401-3" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">names_to =</span> <span class="st">"comparisons"</span>,</span>
 <span id="cb401-4"><a href="sec-dplyr.html#cb401-4" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">"Fold_changes"</span>,</span>
 <span id="cb401-5"><a href="sec-dplyr.html#cb401-5" tabindex="-1"></a>               time_8_vs_0<span class="sc">:</span>time_8_vs_4)</span></code></pre></div>
