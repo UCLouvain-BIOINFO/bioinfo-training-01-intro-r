@@ -6,27 +6,27 @@ library("tidyverse")
 
 **Objectives**
 
-- Introduce the notion of data containers 
+- Introduce the notion of data containers
 
 - Give an overview of the `SummarizedExperiment`, extensively used in omics analyses
 
 
-Data in bioinformatics is often complex. 
+Data in bioinformatics is often complex.
 To deal with this, developers define specialised
 data containers (termed classes) that match the properties of the
 data they need to handle.
 
-This aspect is central to the **Bioconductor**[^Bioconductor] project which 
-uses the same **core data infrastructure** across packages. This certainly contributed 
-to Bioconductor's success. Bioconductor package developers are advised to make 
+This aspect is central to the **Bioconductor**[^Bioconductor] project which
+uses the same **core data infrastructure** across packages. This certainly contributed
+to Bioconductor's success. Bioconductor package developers are advised to make
 use of existing infrastructure to provide coherence, interoperability and stability to
 the project as a whole.
 
 [^Bioconductor]:The [Bioconductor](http://www.bioconductor.org) was initiated by
-Robert Gentleman, one of the two creators of the R language. Bioconductor provides 
-tools dedicated to omics data analysis. 
-Bioconductor uses the R statistical programming language, and is open source and 
-open development. 
+Robert Gentleman, one of the two creators of the R language. Bioconductor provides
+tools dedicated to omics data analysis.
+Bioconductor uses the R statistical programming language, and is open source and
+open development.
 
 
 To illustrate such an omics data container, we'll present the `SummarizedExperiment`
@@ -49,14 +49,14 @@ Objects of the class SummarizedExperiment contain :
   along the columns.
 
 - A **sample metadata** slot containing sample co-variates, stored as a
-  data frame. Rows from this table represent samples (rows match exactly the 
-  columns of the expression data). 
+  data frame. Rows from this table represent samples (rows match exactly the
+  columns of the expression data).
 
 - A **feature metadata** slot containing feature co-variates, stored as
-  data frame. The rows of this dataframe's match exactly the rows of the 
-  expression data. 
-  
-The coordinated nature of the SummarizedExperiment guarantees that 
+  data frame. The rows of this dataframe's match exactly the rows of the
+  expression data.
+
+The coordinated nature of the SummarizedExperiment guarantees that
 during data manipulation, the
 dimensions of the different slots will always match (i.e the columns
 in the expression data and then rows in the sample metadata, as well
@@ -74,21 +74,21 @@ The metadata slots can grow additional co-variates
 ```{r , echo = F, message = FALSE}
 rna <- read_csv("data/rnaseq.csv")
 counts <- rna %>%
-  select(gene, sample, expression) %>% 
+  select(gene, sample, expression) %>%
   pivot_wider(names_from = sample,
-              values_from = expression) 
+              values_from = expression)
 
 count_matrix <- counts %>% select(-gene) %>% as.matrix()
 rownames(count_matrix) <- counts$gene
 
 
 sample_metadata <- rna %>%
-  select(sample, organism, age, sex, infection, strain, time, tissue, mouse) 
+  select(sample, organism, age, sex, infection, strain, time, tissue, mouse)
 
 sample_metadata <- unique(sample_metadata)
 
 gene_metadata <- rna %>%
-  select(gene, ENTREZID, product, ensembl_gene_id, external_synonym, chromosome_name, gene_biotype, phenotype_description, hsapiens_homolog_associated_gene_name)      
+  select(gene, ENTREZID, product, ensembl_gene_id, external_synonym, chromosome_name, gene_biotype, phenotype_description, hsapiens_homolog_associated_gene_name)
 
 # Remove redundancy
 gene_metadata <- unique(gene_metadata)
@@ -99,40 +99,63 @@ Remember the `rna` dataset that we have used previously.
 
 From this table we have already created 3 different tables.
 
-- **An expression matrix**
+- **An expression matrix**: we load the count matrix, specifying that
+  the first columns contains row/gene names, and convert the
+  `data.frame` to a `matrix`. You can download it [by clicking this
+  link](https://carpentries-incubator.github.io/bioc-intro/data/count_matrix.csv).
 
 ```{r}
+count_matrix <- read.csv("data/count_matrix.csv",
+                         row.names = 1) |>
+    as.matrix()
+
 count_matrix[1:5, ]
 dim(count_matrix)
 ```
 
-
-- **A table describing the samples**
+- **A table describing the samples**, available [at this
+  link](https://carpentries-incubator.github.io/bioc-intro/data/sample_metadata.csv).
 
 ```{r}
+sample_metadata <- read.csv("data/sample_metadata.csv")
 sample_metadata
+dim(sample_metadata)
 ```
 
-- **A table describing the genes**
+- **A table describing the genes**, available [at this
+  link](https://carpentries-incubator.github.io/bioc-intro/data/gene_metadata.csv).
 
 ```{r}
-gene_metadata
+gene_metadata <- read.csv("data/gene_metadata.csv")
+gene_metadata[1:10, 1:4]
+dim(gene_metadata)
 ```
 
 We will create a `SummarizedExperiment` from these tables:
 
 - The count matrix that will be used as the **`assay`**
 
-- The table describing the samples will be used as the **sample metadata** slot
+- The table describing the samples will be used as the **sample
+  metadata** slot
 
-- The table describing the genes will be used as the **features metadata** slot
+- The table describing the genes will be used as the **features
+  metadata** slot
 
 To do this we can put the different parts together using the
 `SummarizedExperiment` constructor:
 
 ```{r, message = FALSE}
-#BiocManager::install("SummarizedExperiment")
+## BiocManager::install("SummarizedExperiment")
 library("SummarizedExperiment")
+```
+
+First, we make sure that the samples are in the same order in the
+count matrix and the sample annotation, and the same for the genes in
+the count matrix and the gene annotation.
+
+```{r}
+stopifnot(rownames(count_matrix) == gene_metadata$gene)
+stopifnot(colnames(count_matrix) == sample_metadata$sample)
 ```
 
 ```{r}
@@ -147,7 +170,7 @@ save(se, file = "data/SE.rda")
 ```
 
 Using this data structure, we can access the expression matrix with
-the `assay` function: 
+the `assay` function:
 
 
 ```{r}
@@ -172,10 +195,10 @@ dim(rowData(se))
 
 ### Subsetting a SummarizedExperiment
 
-SummarizedExperiment can be subset just like with data frames, 
+SummarizedExperiment can be subset just like with data frames,
 with numerics or with characters of logicals.
 
-Below, we create a new instance of class SummarizedExperiment that contains only 
+Below, we create a new instance of class SummarizedExperiment that contains only
 the 5 first features for the 3 first samples.
 
 ```{r}
@@ -193,7 +216,7 @@ We can also use the `colData()` function to subset on something from the sample 
 For example, here we keep only miRNAs and the non infected samples:
 
 ```{r}
-se1 <- se[rowData(se)$gene_biotype == "miRNA", 
+se1 <- se[rowData(se)$gene_biotype == "miRNA",
           colData(se)$infection == "NonInfected"]
 se1
 assay(se1)
@@ -202,14 +225,12 @@ rowData(se1)
 ```
 
 
-
-
-For the following exercise, you should download the SE.rda object 
-(that contains the `se` object), and open the file using the 
+For the following exercise, you should download the SE.rda object
+(that contains the `se` object), and open the file using the
 'load()' function.
 
 ```{r, eval = FALSE}
-download.file(url = "https://raw.githubusercontent.com/UCLouvain-CBIO/bioinfo-training-01-intro-r/master/data/SE.rda", 
+download.file(url = "https://github.com/UCLouvain-BIOINFO/bioinfo-training-01-intro-r/raw/refs/heads/main/data/se.rds"
               destfile = "data/SE.rda")
 
 load(file = "data/SE.rda")
@@ -242,7 +263,7 @@ colData(se)$center <- rep("University of Illinois", nrow(colData(se)))
 colData(se)
 ```
 
-This illustrates that the metadata slots can grow indefinitely without affecting 
+This illustrates that the metadata slots can grow indefinitely without affecting
 the other structures!
 
 
@@ -252,10 +273,8 @@ the other structures!
 
 - `SummarizedExperiment` represent an efficient way to store and to handle omics data.
 
-- They are used in many Bioconductor packages. 
+- They are used in many Bioconductor packages.
 
-If you follow next training focused on RNA sequencing analysis, you will learn to 
-use the Bioconductor `DESeq2` package to do some differential expression analyses. 
+If you follow next training focused on RNA sequencing analysis, you will learn to
+use the Bioconductor `DESeq2` package to do some differential expression analyses.
 `DESeq2`'s whole analysis is handled in a `SummarizedExperiment`.
-
-
