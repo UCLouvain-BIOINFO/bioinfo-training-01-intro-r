@@ -597,10 +597,9 @@ For example, here we keep only miRNAs and the non infected samples:</p>
 <p>For the following exercise, you should download the SE.rda object
 (that contains the <code>se</code> object), and open the file using the
 ‘load()’ function.</p>
-<div class="sourceCode" id="cb598"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb598-1"><a href="sec-next.html#cb598-1" tabindex="-1"></a><span class="fu">download.file</span>(<span class="at">url =</span> <span class="st">"https://github.com/UCLouvain-BIOINFO/bioinfo-training-01-intro-r/raw/refs/heads/main/data/se.rds"</span></span>
-<span id="cb598-2"><a href="sec-next.html#cb598-2" tabindex="-1"></a>              <span class="at">destfile =</span> <span class="st">"data/SE.rda"</span>)</span>
-<span id="cb598-3"><a href="sec-next.html#cb598-3" tabindex="-1"></a></span>
-<span id="cb598-4"><a href="sec-next.html#cb598-4" tabindex="-1"></a><span class="fu">load</span>(<span class="at">file =</span> <span class="st">"data/SE.rda"</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb598"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb598-1"><a href="sec-next.html#cb598-1" tabindex="-1"></a><span class="fu">download.file</span>(<span class="at">url =</span> <span class="st">"https://github.com/UCLouvain-BIOINFO/bioinfo-training-01-intro-r/raw/refs/heads/main/data/se.rds"</span>,</span>
+<span id="cb598-2"><a href="sec-next.html#cb598-2" tabindex="-1"></a>              <span class="at">destfile =</span> <span class="st">"data/SE.rds"</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb599"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb599-1"><a href="sec-next.html#cb599-1" tabindex="-1"></a><span class="fu">load</span>(<span class="at">file =</span> <span class="st">"data/SE.rds"</span>)</span></code></pre></div>
 <div class="question">
 <p class="question-begin">
 ► Question
@@ -617,7 +616,7 @@ For example, here we keep only miRNAs and the non infected samples:</p>
 ► Solution<span id="sol-start-52" class="fa fa-plus-square solution-icon clickable" onclick="toggle_visibility('sol-body-52', 'sol-start-52')"></span>
 </p>
 <div id="sol-body-52" class="solution-body" style="display: none;">
-<div class="sourceCode" id="cb599"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb599-1"><a href="sec-next.html#cb599-1" tabindex="-1"></a><span class="fu">assay</span>(se)[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="fu">colData</span>(se)<span class="sc">$</span>time <span class="sc">!=</span> <span class="dv">4</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb600"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb600-1"><a href="sec-next.html#cb600-1" tabindex="-1"></a><span class="fu">assay</span>(se)[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="fu">colData</span>(se)<span class="sc">$</span>time <span class="sc">!=</span> <span class="dv">4</span>]</span></code></pre></div>
 <pre><code>##         GSM2545336 GSM2545337 GSM2545338 GSM2545341 GSM2545342 GSM2545343
 ## Asl           1170        361        400        988        836        535
 ## Apod         36194      10347       9173      29594      24959      13668
@@ -630,8 +629,8 @@ For example, here we keep only miRNAs and the non infected samples:</p>
 ## Asl            473       1192
 ## Apod         11088      38148
 ## Cyp2d22       1821       4019</code></pre>
-<div class="sourceCode" id="cb601"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb601-1"><a href="sec-next.html#cb601-1" tabindex="-1"></a><span class="co"># Equivalent to</span></span>
-<span id="cb601-2"><a href="sec-next.html#cb601-2" tabindex="-1"></a><span class="fu">assay</span>(se)[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="fu">colData</span>(se)<span class="sc">$</span>time <span class="sc">==</span> <span class="dv">0</span> <span class="sc">|</span> <span class="fu">colData</span>(se)<span class="sc">$</span>time <span class="sc">==</span> <span class="dv">8</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb602"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb602-1"><a href="sec-next.html#cb602-1" tabindex="-1"></a><span class="co"># Equivalent to</span></span>
+<span id="cb602-2"><a href="sec-next.html#cb602-2" tabindex="-1"></a><span class="fu">assay</span>(se)[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="fu">colData</span>(se)<span class="sc">$</span>time <span class="sc">==</span> <span class="dv">0</span> <span class="sc">|</span> <span class="fu">colData</span>(se)<span class="sc">$</span>time <span class="sc">==</span> <span class="dv">8</span>]</span></code></pre></div>
 <pre><code>##         GSM2545336 GSM2545337 GSM2545338 GSM2545341 GSM2545342 GSM2545343
 ## Asl           1170        361        400        988        836        535
 ## Apod         36194      10347       9173      29594      24959      13668
@@ -654,8 +653,8 @@ For example, here we keep only miRNAs and the non infected samples:</p>
 <span class="header-section-number">8.1.2.1</span> Adding variables to metadata</h4>
 <p>We can also add information to the metadata.
 Suppose that you want to add the center where the samples were collected…</p>
-<div class="sourceCode" id="cb603"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb603-1"><a href="sec-next.html#cb603-1" tabindex="-1"></a><span class="fu">colData</span>(se)<span class="sc">$</span>center <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="st">"University of Illinois"</span>, <span class="fu">nrow</span>(<span class="fu">colData</span>(se)))</span>
-<span id="cb603-2"><a href="sec-next.html#cb603-2" tabindex="-1"></a><span class="fu">colData</span>(se)</span></code></pre></div>
+<div class="sourceCode" id="cb604"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb604-1"><a href="sec-next.html#cb604-1" tabindex="-1"></a><span class="fu">colData</span>(se)<span class="sc">$</span>center <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="st">"University of Illinois"</span>, <span class="fu">nrow</span>(<span class="fu">colData</span>(se)))</span>
+<span id="cb604-2"><a href="sec-next.html#cb604-2" tabindex="-1"></a><span class="fu">colData</span>(se)</span></code></pre></div>
 <pre><code>## DataFrame with 22 rows and 10 columns
 ##                 sample     organism       age         sex   infection
 ##            &lt;character&gt;  &lt;character&gt; &lt;integer&gt; &lt;character&gt; &lt;character&gt;

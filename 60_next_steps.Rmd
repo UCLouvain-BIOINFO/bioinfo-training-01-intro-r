@@ -166,7 +166,7 @@ se
 ```
 
 ```{r, echo = FALSE}
-save(se, file = "data/SE.rda")
+save(se, file = "data/se.rds")
 ```
 
 Using this data structure, we can access the expression matrix with
@@ -229,11 +229,13 @@ For the following exercise, you should download the SE.rda object
 (that contains the `se` object), and open the file using the
 'load()' function.
 
-```{r, eval = FALSE}
-download.file(url = "https://github.com/UCLouvain-BIOINFO/bioinfo-training-01-intro-r/raw/refs/heads/main/data/se.rds"
-              destfile = "data/SE.rda")
+```{r, eval = TRUE}
+download.file(url = "https://github.com/UCLouvain-BIOINFO/bioinfo-training-01-intro-r/raw/refs/heads/main/data/se.rds",
+              destfile = "data/SE.rds")
+```
 
-load(file = "data/SE.rda")
+```{r, eval = FALSE}
+load(file = "data/SE.rds")
 ```
 
 `r msmbstyle::question_begin()`
